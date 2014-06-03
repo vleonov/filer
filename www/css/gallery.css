@@ -1,0 +1,51 @@
+.c-gallery-prev {
+    position: fixed;
+    left: 0;
+    top: 40;
+    cursor: pointer;
+}
+.c-gallery-next {
+    position: fixed;
+    right: 0;
+    top: 40;
+    cursor: pointer;
+}
+.c-gallery-close {
+    position: fixed;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+    .c-gallery-prev div,
+    .c-gallery-next div,
+    .c-gallery-close div {
+        background-color: #696969;
+        border-radius: 4px;
+        height: 14px;
+        opacity: 0.2;
+        padding: 10px 10px 12px 12px;
+        width: 14px;
+    }
+    .c-gallery-close div {
+        opacity: 0.4;
+    }
+    .c-gallery-prev:hover div,
+    .c-gallery-next:hover div,
+    .c-gallery-close:hover div {
+        opacity: 0.7;
+    }
+    .c-gallery-prev i,
+    .c-gallery-next i,
+    .c-gallery-close i {
+        margin: 0;
+    }
+
+.modal {
+    background-color: transparent;
+}
+.modal a {
+    border-bottom: 0;
+}
+    .modal a img {
+        border-radius: 10px;
+    }

@@ -1,6 +1,8 @@
 {extends "layout.tpl"}
 
 {block "content"}
-    <h1>404</h1>
-    <strong>not found :(</strong>
+    <div class="error-404">
+        <h1>404, sorry</h1>
+        <strong>{$errorText|default:'the requested page not found'}</strong>
+    </div>
 {/block}

@@ -1,3 +1,7 @@
+.idea
+etc/config.php
 var/tmp/*
 www/files/*
+www/previews/*
+www/thumbs/*
 www/tmp/*

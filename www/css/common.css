@@ -1,0 +1,12 @@
+.select-large {
+    font-size: 17.5px;
+    height: auto;
+    margin-bottom: 0;
+    padding: 9px 9px 9px 19px;
+}
+
+.error-404 {
+    width: 30%;
+    min-width: 220px;
+    margin: 0 auto;
+}

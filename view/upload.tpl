@@ -1,0 +1,1 @@
+<result>{{$result|json_encode}}</result>

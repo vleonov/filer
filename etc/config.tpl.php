@@ -10,6 +10,10 @@ return array(
         'user' => '',
         'password' => '',
     ),
+    'view' => array(
+        'forceCompile' => false,
+        'compileCheck' => false,
+    ),
     'base' => array(
         'hostname' => '/pathname',
     ),
