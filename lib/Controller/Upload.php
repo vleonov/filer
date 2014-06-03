@@ -105,7 +105,7 @@ class C_Upload extends Controller
             $mFile->save();
         }
 
-        return Response()->redirect('/' . $id);
+        return Response()->redirect($id);
     }
 
     public function get()

@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="file-save">
-            <form action="/upload/{$huid}/save" method="post">
+            <form action="upload/{$huid}/save" method="post">
                 <select name="ttl" id="fileupload-ttl" class="select-large js-float-options" disabled="disabled" data-text="Store for">
                     <option value="ff" data-text="ten minutes">Store for ten minutes</option>
                     <option value="ff" data-text="one hour">          one hour</option>

@@ -40,7 +40,7 @@
         text-align: right;
     }
     .file-list .file-status {
-        background: url('img/ajax-small.gif') no-repeat 0 7px;
+        background: url('../img/ajax-small.gif') no-repeat 0 7px;
         padding: 10px 0 10px 14px;
     }
     .file-list .file-success .file-status,
