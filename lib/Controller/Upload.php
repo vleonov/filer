@@ -7,7 +7,7 @@ class C_Upload extends Controller
         $huid = Request()->args('huid');
         $basedir = Config()->dir['www'];
 
-        $result = [];
+        $result = array();
         if (isset($_FILES['files'])) {
             $uploaded = $_FILES['files'];
             for ($i = 0, $ci = sizeof($uploaded['name']); $i<$ci; $i++) {
@@ -118,7 +118,7 @@ class C_Upload extends Controller
             return Response()->assign('errorText', 'the requested files do not found')->error404();
         }
 
-        $lFiles = new L_Files(['uploadId' => $id]);
+        $lFiles = new L_Files(array('uploadId' => $id));
 
         $result = array();
         $isImageOnly = true;
