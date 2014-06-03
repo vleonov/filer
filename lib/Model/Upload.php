@@ -10,7 +10,7 @@ class M_Upload extends Model
 {
 
     protected $_idIsInt = false;
-    protected $_tblName = 'uploads';
+    protected $_tblName = 'filer_uploads';
 
     public function save()
     {

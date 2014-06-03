@@ -11,5 +11,5 @@
  */
 class M_File extends Model
 {
-    protected $_tblName = 'files';
+    protected $_tblName = 'filer_files';
 }
