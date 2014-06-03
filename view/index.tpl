@@ -17,7 +17,7 @@
                 <i class="icon-plus icon-white"></i>
                 Add files...
             </div>
-            <form action="/upload/{$huid}" method="post" enctype="multipart/form-data">
+            <form action="upload/{$huid}" method="post" enctype="multipart/form-data">
                 <input id="fileupload" type="file" name="files[]" multiple="multiple">
             </form>
         </div>
