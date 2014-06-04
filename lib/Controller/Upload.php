@@ -82,13 +82,14 @@ class C_Upload extends Controller
 
         $files = U_Misc::rddir($basedir . '/' . $filedir);
 
+	$finfo = new finfo();
         foreach ($files as $filename) {
             $mFile = new M_File();
             $mFile->uploadId = $id;
             $mFile->path = $filename;
             $mFile->name = basename($filename);
             $mFile->size = filesize($basedir . '/' . $filedir . '/' . $filename);
-            $mFile->mime = mime_content_type($basedir . '/' . $filedir . '/' . $filename);
+            $mFile->mime = $finfo->file($basedir . '/' . $filedir . '/' . $filename, 16);
             switch ($mFile->mime) {
                 case 'image/jpg':
                 case 'image/jpeg':
@@ -105,7 +106,7 @@ class C_Upload extends Controller
             $mFile->save();
         }
 
-        return Response()->redirect($id);
+        return Response()->redirect('/' . $id);
     }
 
     public function get()
