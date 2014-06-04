@@ -38,6 +38,8 @@ class C_Upload extends Controller
                 $result[$i]['url'] = $filedir . '/' . $uploaded['name'][$i];
 
                 if (U_Image::is($filename)) {
+                    U_Image::rotate($filename);
+
                     $thumbFiledir = 'thumbs/' . $huid . ($s ? '/' . $s : '');
                     U_Misc::mkdir($basedir . '/' . $thumbFiledir);
 
@@ -82,7 +84,7 @@ class C_Upload extends Controller
 
         $files = U_Misc::rddir($basedir . '/' . $filedir);
 
-	$finfo = new finfo();
+	    $finfo = new finfo();
         foreach ($files as $filename) {
             $mFile = new M_File();
             $mFile->uploadId = $id;
