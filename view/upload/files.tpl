@@ -17,14 +17,14 @@
         {if $isPhotoOnly && $fileList|count == 1}
             <div class="file-alone-photo">
                 <a href="{$fileList[0].url}" target="_blank">
-                    <img src="{$fileList[0].previewUrl}" alt=""/>
+                    <img src="{$fileList[0].previewUrl}" width="{$fileList[0].tags.preview.width / 2}" height="{$fileList[0].tags.preview.height / 2}" alt=""/>
                 </a>
             </div>
         {else}
             {foreach $fileList as $i=>$file}
                 <div class="file-photo">
                     <a class="c-gallery" name="gallery{$i}" href="{$file.url}" target="_blank" data-preview="{$file.previewUrl}" data-i="{$i}">
-                        <img src="{$file.thumbUrl}"/>
+                        <img src="{$file.thumbUrl}" width="{$file.tags.thumb.width / 2}" height="{$file.tags.thumb.height / 2}"/>
                     </a>
                 </div>
             {/foreach}

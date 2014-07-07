@@ -47,10 +47,15 @@ class C_Upload extends Controller
                         $filename,
                         $basedir . '/' . $thumbFiledir . '/' . $uploaded['name'][$i],
                         PHP_INT_MAX,
-                        113
+                        113 * 2
                     );
+                    $thumbMeta = getimagesize($basedir . '/' . $thumbFiledir . '/' . $uploaded['name'][$i]);
 
-                    $result[$i]['thumbUrl'] = $thumbFiledir . '/' . $uploaded['name'][$i];
+                    $result[$i]['thumb'] = array(
+                        'url' => $thumbFiledir . '/' . $uploaded['name'][$i],
+                        'width' => $thumbMeta[0],
+                        'height' => $thumbMeta[1],
+                    );
 
                     $previewFiledir = 'previews/' . $huid . ($s ? '/' . $s : '');
                     U_Misc::mkdir($basedir . '/' . $previewFiledir);
@@ -58,8 +63,8 @@ class C_Upload extends Controller
                     U_Image::resize(
                         $filename,
                         $basedir . '/' . $previewFiledir . '/' . $uploaded['name'][$i],
-                        800,
-                        600
+                        800 * 2,
+                        600 * 2
                     );
                 }
             }
@@ -103,6 +108,26 @@ class C_Upload extends Controller
                     } else {
                         $mFile->type = 'image';
                     }
+                    $tags = array();
+                    $tags['file'] = array(
+                        'width' => $meta[0],
+                        'height' => $meta[1],
+                    );
+                    $thumbMeta = getimagesize('thumbs/' . $mUpload->huid . '/' . $filename);
+                    if (!empty($thumbMeta[0]) && !empty($thumbMeta[1])) {
+                        $tags['thumb'] = array(
+                            'width' => $thumbMeta[0],
+                            'height' => $thumbMeta[1],
+                        );
+                    }
+                    $previewMeta = getimagesize('previews/' . $mUpload->huid . '/' . $filename);
+                    if (!empty($previewMeta[0]) && !empty($previewMeta[1])) {
+                        $tags['preview'] = array(
+                            'width' => $previewMeta[0],
+                            'height' => $previewMeta[1],
+                        );
+                    }
+                    $mFile->tags = $tags;
                     break;
             }
             $mFile->save();
@@ -134,6 +159,7 @@ class C_Upload extends Controller
                 'name' => $mFile->name,
                 'size' => $mFile->size,
                 'type' => $mFile->type,
+                'tags' => $mFile->tags,
                 'url' => 'files/' . $mUpload->huid . '/' . $mFile->path,
             );
 

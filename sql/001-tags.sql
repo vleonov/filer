@@ -1,0 +1,1 @@
+ALTER TABLE `filer_files` ADD COLUMN tags TEXT;
