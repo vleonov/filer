@@ -76,11 +76,13 @@ class C_Upload extends Controller
     public function save()
     {
         $huid = Request()->args('huid');
+        $ttl = (int) Request()->post('ttl');
+        $ttl = max(10 * U_Date::MINUTE, min(U_Date::MONTH, $ttl));
 
         $mUpload = new M_Upload();
         $mUpload->huid = $huid;
         $mUpload->createdAt = date(DATE_W3C, time());
-        $mUpload->finishAt = date(DATE_W3C, time() + 86400);
+        $mUpload->finishAt = date(DATE_W3C, time() + $ttl);
 
         $id = $mUpload->save();
 
