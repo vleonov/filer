@@ -9,6 +9,7 @@
  * @property string $mime
  * @property string $type
  * @property array $tags
+ * @property int $sorting
  */
 class M_File extends Model
 {

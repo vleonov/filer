@@ -76,6 +76,7 @@ class C_Upload extends Controller
     public function save()
     {
         $huid = Request()->args('huid');
+        $filesOrder = array_flip( (array) Request()->post('file'));
         $ttl = (int) Request()->post('ttl');
         $ttl = max(10 * U_Date::MINUTE, min(U_Date::MONTH, $ttl));
 
@@ -93,12 +94,17 @@ class C_Upload extends Controller
 
 	    $finfo = new finfo();
         foreach ($files as $filename) {
+            if (!isset($filesOrder[$filedir . '/' . $filename])) {
+                unlink($basedir . '/' . $filedir . '/' . $filename);
+                continue;
+            }
             $mFile = new M_File();
             $mFile->uploadId = $id;
             $mFile->path = $filename;
             $mFile->name = basename($filename);
             $mFile->size = filesize($basedir . '/' . $filedir . '/' . $filename);
             $mFile->mime = $finfo->file($basedir . '/' . $filedir . '/' . $filename, 16);
+            $mFile->sorting = $filesOrder[$filedir . '/' . $filename];
             switch ($mFile->mime) {
                 case 'image/jpg':
                 case 'image/jpeg':
@@ -148,7 +154,7 @@ class C_Upload extends Controller
             return Response()->assign('errorText', 'the requested files do not found')->error404();
         }
 
-        $lFiles = new L_Files(array('uploadId' => $id));
+        $lFiles = new L_Files(array('uploadId' => $id), array('sorting ASC'));
 
         $result = array();
         $isImageOnly = true;

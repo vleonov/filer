@@ -57,19 +57,21 @@ $( function() {
             for (i = 0, ci = result.length; i<ci; i++) {
                 id = 'file-' + result[i].name.length + '-' + result[i].size + '-' + iframeId;
                 $rows = $('#' + id);
-                console.log($rows);
                 if (result[i].error !== undefined) {
                     $rows.addClass('file-error');
                     $('<i></i>').addClass('icon-remove').appendTo($('.file-status', $rows));
                 } else {
                     $rows.addClass('file-success');
-                    console.log(result[i]);
                     if (result[i].thumb !== undefined) {
                         $('<img/>').attr('src', result[i].thumb.url)
                             .attr('width', parseInt(result[i].thumb.width / 2))
                             .attr('height', parseInt(result[i].thumb.height / 2))
                             .appendTo($('.file-thumb', $rows));
                     }
+                    $('<input/>').attr('type', 'hidden')
+                        .attr('name', 'file[]')
+                        .val(result[i].url)
+                        .appendTo($('.file-status', $rows));
                     $('<i></i>').addClass('icon-ok').appendTo($('.file-status', $rows));
                     $('.file-name', $rows).html('<a href="' + result[i].url + '" target="_blank">' + result[i].name + '</a>');
                 }

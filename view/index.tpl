@@ -21,8 +21,8 @@
                 <input id="fileupload" type="file" name="files[]" multiple="multiple">
             </form>
         </div>
-        <div class="file-save">
-            <form action="upload/{$huid}/save" method="post">
+        <form action="upload/{$huid}/save" method="post">
+            <div class="file-save">
                 <select name="ttl" id="fileupload-ttl" class="select-large js-float-options" disabled="disabled" data-text="Store for">
                     <option value="{10 * constant("U_Date::MINUTE")}" data-text="ten minutes">Store for ten minutes</option>
                     <option value="{constant("U_Date::HOUR")}" data-text="one hour">          one hour</option>
@@ -33,8 +33,8 @@
                 <button id="fileupload-save" type="submit" class="btn btn-large" disabled="disabled">
                     Upload
                 </button>
-            </form>
-        </div>
-        <table id="filelist" class="file-list"></table>
+            </div>
+            <table id="filelist" class="file-list"></table>
+        </form>
     </div>
 {/block}
