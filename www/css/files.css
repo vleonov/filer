@@ -52,6 +52,19 @@
     .file-list .file-error {
         color: #999;
     }
+    .file-list .file-delete i {
+        cursor: pointer;
+    }
+    .file-list .file-sort i {
+        cursor: pointer;
+    }
+        .file-list tr:first-child .file-sort i.icon-arrow-up,
+        .file-list tr:last-child .file-sort i.icon-arrow-down {
+            display: none;
+        }
+        .file-list tr:first-child .file-sort i.icon-arrow-down {
+            margin-left: 14px;
+        }
 
 .file-alone-photo {
     text-align: center;

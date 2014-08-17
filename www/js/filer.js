@@ -13,6 +13,9 @@ $( function() {
         var $form = $input.parents('form');
         $form.attr('action', $form.attr('action'));
         $input.change(handleFiles);
+        $(document).on('click', '.js-file-delete', function() {deleteFile(this)});
+        $(document).on('click', '.js-file-up', function() {upFile(this)});
+        $(document).on('click', '.js-file-down', function() {downFile(this)});
     }
 
     function handleFiles()
@@ -90,8 +93,37 @@ $( function() {
             $status = $('<td></td>').addClass('file-status').appendTo($row),
             $thumb = $('<td></td>').addClass('file-thumb').appendTo($row),
             $name = $('<td></td>').html(file.name).addClass('file-name').appendTo($row),
-            $size = $('<td></td>').html(fileSize(file.size)).addClass('file-size').appendTo($row);
+            $size = $('<td></td>').html(fileSize(file.size)).addClass('file-size').appendTo($row),
+            $sort = $('<td></td>').addClass('file-sort').appendTo($row),
+            $iUp = $('<i></i>').addClass('icon-arrow-up').addClass('js-file-up').attr('title', 'Move file up').appendTo($sort),
+            $iDown = $('<i></i>').addClass('icon-arrow-down').addClass('js-file-down').attr('title', 'Mobe file down').appendTo($sort),
+            $delete = $('<td></td>').addClass('file-delete').appendTo($row),
+            $iDelete = $('<i></i>').addClass('icon-trash').addClass('js-file-delete').attr('title', 'Delete file').appendTo($delete);
+    }
 
+    function deleteFile(ele)
+    {
+        $(ele).parents('tr').detach();
+    }
+
+    function upFile(ele)
+    {
+        var $tr = $(ele).parents('tr'),
+            $upper = $($tr[0].previousSibling);
+
+        if ($upper.length) {
+            $tr.insertBefore($upper);
+        }
+    }
+
+    function downFile(ele)
+    {
+        var $tr = $(ele).parents('tr'),
+            $lower = $($tr[0].nextSibling);
+
+        if ($lower.length) {
+            $tr.insertAfter($lower);
+        }
     }
 
     function fileSize(size)
