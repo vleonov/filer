@@ -19,7 +19,7 @@ var Gallery = {
     $aNext: [],
     $aPrev: [],
     timer: null,
-    delay: 300,
+    delay: 10,
     historyHack: false,
 
     init: function()
@@ -90,8 +90,9 @@ var Gallery = {
         }
 
         this.$aCurrent = $a;
-;
+
         this._definePN();
+        this._preShow();
         this._historyAdd();
 
         return false;
@@ -124,7 +125,6 @@ var Gallery = {
                 height = wHeight - this.padding*2;
                 width = iWidth * (height / iHeight);
             }
-            console.log(width+" "+height);
         } else {
             width = iWidth;
             height = iHeight;
@@ -245,10 +245,23 @@ var Gallery = {
         }
     },
 
+    _preShow: function()
+    {
+        var $next = this.$aNext[0] !== undefined ? this.$aNext[0] : null,
+            preview;
+
+        if ($next) {
+            preview = $next.attr('data-preview');
+            if (preview) {
+                img = new Image();
+                img.src = preview;
+            }
+        }
+    },
+
     _historyAdd: function()
     {
         this.historyHack = true;
-        console.log(location);
         location = location.pathname + '#gallery' + this.$aCurrent.attr('data-i');
     },
 
