@@ -21,6 +21,7 @@ var Gallery = {
     timer: null,
     delay: 10,
     historyHack: false,
+    last: {},
 
     init: function()
     {
@@ -61,6 +62,12 @@ var Gallery = {
             Gallery.close();
         });
 
+        $(window).resize(function() {
+            if (Gallery.last.width !== undefined && Gallery.last.height !== undefined) {
+                Gallery._resize(Gallery.last.width, Gallery.last.height);
+            }
+        });
+
         this.cSize = $('div', this.$cPrev).outerHeight();
 
         window.addEventListener('popstate', function(e){
@@ -86,7 +93,9 @@ var Gallery = {
         img = new Image();
         img.src = preview;
         img.onload = function() {
-          Gallery._resize(this.width, this.height);
+            Gallery._resize(this.width, this.height);
+            Gallery.last.width = this.width;
+            Gallery.last.height = this.height;
         }
 
         this.$aCurrent = $a;
@@ -174,6 +183,7 @@ var Gallery = {
             this.$img.attr('src', '');
             this.$a.attr('href', '');
             this.isOpened = false;
+            this.last = {};
             return false;
         }
 
