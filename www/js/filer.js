@@ -58,7 +58,7 @@ $( function() {
             $('<i></i>').addClass('icon-remove').appendTo($('.file-status', $rows));
         } else {
             for (i = 0, ci = result.length; i<ci; i++) {
-                id = 'file-' + result[i].name.length + '-' + result[i].size + '-' + iframeId;
+                id = 'file' + hashCode(result[i].name) + '-' + result[i].size + '-' + iframeId;
                 $rows = $('#' + id);
                 if (result[i].error !== undefined) {
                     $rows.addClass('file-error');
@@ -88,7 +88,7 @@ $( function() {
 
     function showFile(file, iframeId)
     {
-        var id = 'file-' + file.name.length + '-' + file.size + '-' + iframeId,
+        var id = 'file' + hashCode(file.name) + '-' + file.size + '-' + iframeId,
             $row = $('<tr></tr>').attr('id', id).appendTo($list).addClass('iframe-' + iframeId),
             $status = $('<td></td>').addClass('file-status').appendTo($row),
             $thumb = $('<td></td>').addClass('file-thumb').appendTo($row),

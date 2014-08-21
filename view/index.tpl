@@ -1,6 +1,7 @@
 {extends file='layout.tpl'}
 
 {block "js"}
+    <script language="JavaScript" src="js/misc.js"></script>
     <script language="JavaScript" src="js/filer.js"></script>
     <script language="JavaScript" src="js/floatOptions.js"></script>
 {/block}
