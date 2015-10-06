@@ -64,4 +64,12 @@
 
     {/if}
 
+    <div class="clear"></div>
+    <div class="qr">
+        <div>
+            Scan to catch it with your phone
+        </div>
+        <img src="{$qrUrl}" alt="QR-code" title="QR-code">
+    </div>
+
 {/block}

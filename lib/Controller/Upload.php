@@ -189,8 +189,8 @@ class C_Upload extends Controller
             'fileList' => $result,
             'isImageOnly' => $isImageOnly,
             'isPhotoOnly' => $isPhotoOnly,
+            'qrUrl' => 'http:' . U_Url::base() . U_QR::url('/files/' . $id, 5, 0),
         );
-
         return Response()->assign($r)->fetch('upload/files.tpl');
     }
 }
